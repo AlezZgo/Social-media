@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace 'com.alezzgo.socialmedia'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.alezzgo.socialmedia"
         minSdk 24
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -63,18 +63,28 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:1.4.3"
     //compose
     implementation("androidx.navigation:navigation-compose:2.6.0")
-    implementation("androidx.compose.material:material:1.4.3")
+
     implementation 'androidx.activity:activity-compose:1.7.2'
     implementation "androidx.compose.ui:ui:1.4.3"
     implementation "androidx.compose.ui:ui-tooling-preview:1.4.3"
+
     implementation 'androidx.compose.material3:material3:1.1.1'
+    implementation 'androidx.compose.material3:material3-window-size-class-android:1.2.0-alpha03'
+    implementation 'com.google.accompanist:accompanist-flowlayout:0.28.0'
+
     androidTestImplementation platform('androidx.compose:compose-bom:2022.10.00')
     debugImplementation "androidx.compose.ui:ui-tooling:1.4.3"
     debugImplementation "androidx.compose.ui:ui-test-manifest:1.4.3"
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
+
+    implementation("io.coil-kt:coil:2.2.2")
     implementation("io.coil-kt:coil-compose:2.2.2")
     //Room
     implementation"androidx.room:room-ktx:2.5.2"
     kapt"androidx.room:room-compiler:2.5.2"
+
+
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.31.4-beta"
+
 
 }
