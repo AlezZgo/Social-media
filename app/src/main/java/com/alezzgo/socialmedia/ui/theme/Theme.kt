@@ -2,8 +2,18 @@ package com.alezzgo.socialmedia.ui.theme
 
 import android.app.Activity
 import android.os.Build
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.FastOutLinearInEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -11,11 +21,15 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
@@ -122,4 +136,124 @@ fun SocialMediaTheme(
         typography = Typography,
         content = content
     )
+}
+
+
+@Preview(showBackground = true)
+@Composable
+private fun ColorsPreview() {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+    ) {
+        SocialMediaTheme(
+            darkTheme = false
+        ) {
+            val colors = listOf(
+                "primary" to MaterialTheme.colorScheme.primary,
+                "onPrimary" to MaterialTheme.colorScheme.onPrimary,
+                "primaryContainer" to MaterialTheme.colorScheme.primaryContainer,
+                "onPrimaryContainer" to MaterialTheme.colorScheme.onPrimaryContainer,
+                "inversePrimary" to MaterialTheme.colorScheme.inversePrimary,
+                "secondary" to MaterialTheme.colorScheme.secondary,
+                "onSecondary" to MaterialTheme.colorScheme.onSecondary,
+                "secondaryContainer" to MaterialTheme.colorScheme.secondaryContainer,
+                "onSecondaryContainer" to MaterialTheme.colorScheme.onSecondaryContainer,
+                "tertiary" to MaterialTheme.colorScheme.tertiary,
+                "onTertiary" to MaterialTheme.colorScheme.onTertiary,
+                "tertiaryContainer" to MaterialTheme.colorScheme.tertiaryContainer,
+                "onTertiaryContainer" to MaterialTheme.colorScheme.onTertiaryContainer,
+                "background" to MaterialTheme.colorScheme.background,
+                "onBackground" to MaterialTheme.colorScheme.onBackground,
+                "surface" to MaterialTheme.colorScheme.surface,
+                "onSurface" to MaterialTheme.colorScheme.onSurface,
+                "surfaceVariant" to MaterialTheme.colorScheme.surfaceVariant,
+                "onSurfaceVariant" to MaterialTheme.colorScheme.onSurfaceVariant,
+                "surfaceTint" to MaterialTheme.colorScheme.surfaceTint,
+                "inverseSurface" to MaterialTheme.colorScheme.inverseSurface,
+                "inverseOnSurface" to MaterialTheme.colorScheme.inverseOnSurface,
+                "error" to MaterialTheme.colorScheme.error,
+                "onError" to MaterialTheme.colorScheme.onError,
+                "errorContainer" to MaterialTheme.colorScheme.errorContainer,
+                "onErrorContainer" to MaterialTheme.colorScheme.onErrorContainer,
+                "outline" to MaterialTheme.colorScheme.outline,
+                "outlineVariant" to MaterialTheme.colorScheme.outlineVariant,
+                "scrim" to MaterialTheme.colorScheme.scrim,
+            )
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+            ) {
+                colors.forEach {
+                    Surface(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(24.dp),
+                        color = it.second
+                    ) {
+                        Text(
+                            modifier = Modifier.fillMaxWidth(),
+                            text = it.first,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+            }
+        }
+        SocialMediaTheme(
+            darkTheme = true
+        ) {
+            val colors = listOf(
+                "primary" to MaterialTheme.colorScheme.primary,
+                "onPrimary" to MaterialTheme.colorScheme.onPrimary,
+                "primaryContainer" to MaterialTheme.colorScheme.primaryContainer,
+                "onPrimaryContainer" to MaterialTheme.colorScheme.onPrimaryContainer,
+                "inversePrimary" to MaterialTheme.colorScheme.inversePrimary,
+                "secondary" to MaterialTheme.colorScheme.secondary,
+                "onSecondary" to MaterialTheme.colorScheme.onSecondary,
+                "secondaryContainer" to MaterialTheme.colorScheme.secondaryContainer,
+                "onSecondaryContainer" to MaterialTheme.colorScheme.onSecondaryContainer,
+                "tertiary" to MaterialTheme.colorScheme.tertiary,
+                "onTertiary" to MaterialTheme.colorScheme.onTertiary,
+                "tertiaryContainer" to MaterialTheme.colorScheme.tertiaryContainer,
+                "onTertiaryContainer" to MaterialTheme.colorScheme.onTertiaryContainer,
+                "background" to MaterialTheme.colorScheme.background,
+                "onBackground" to MaterialTheme.colorScheme.onBackground,
+                "surface" to MaterialTheme.colorScheme.surface,
+                "onSurface" to MaterialTheme.colorScheme.onSurface,
+                "surfaceVariant" to MaterialTheme.colorScheme.surfaceVariant,
+                "onSurfaceVariant" to MaterialTheme.colorScheme.onSurfaceVariant,
+                "surfaceTint" to MaterialTheme.colorScheme.surfaceTint,
+                "inverseSurface" to MaterialTheme.colorScheme.inverseSurface,
+                "inverseOnSurface" to MaterialTheme.colorScheme.inverseOnSurface,
+                "error" to MaterialTheme.colorScheme.error,
+                "onError" to MaterialTheme.colorScheme.onError,
+                "errorContainer" to MaterialTheme.colorScheme.errorContainer,
+                "onErrorContainer" to MaterialTheme.colorScheme.onErrorContainer,
+                "outline" to MaterialTheme.colorScheme.outline,
+                "outlineVariant" to MaterialTheme.colorScheme.outlineVariant,
+                "scrim" to MaterialTheme.colorScheme.scrim,
+            )
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+            ) {
+                colors.forEach {
+                    Surface(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(24.dp),
+                        color = it.second,
+                    ) {
+                        Text(
+                            modifier = Modifier.fillMaxWidth(),
+                            text = it.first,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+            }
+        }
+    }
 }

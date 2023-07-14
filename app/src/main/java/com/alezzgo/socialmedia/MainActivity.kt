@@ -38,16 +38,16 @@ class MainActivity : ComponentActivity() {
         setContent {
             SocialMediaTheme {
                 CustomScaffold(
-                    topBar = {
-                        TopAppBar(
-                            title = {
-                                Text(
-                                    modifier = Modifier,
-                                    text = "Title"
-                                )
-                            }
-                        )
-                    },
+//                    topBar = {
+//                        TopAppBar(
+//                            title = {
+//                                Text(
+//                                    modifier = Modifier,
+//                                    text = "Title"
+//                                )
+//                            },
+//                        )
+//                    },
 
                     contentWindowInsets = WindowInsets(0.dp)
                 ) { paddings, hasTopAppBar ->
