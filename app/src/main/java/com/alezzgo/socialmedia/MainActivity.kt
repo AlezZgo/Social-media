@@ -30,7 +30,6 @@ import com.alezzgo.socialmedia.ui.theme.SocialMediaTheme
 
 class MainActivity : ComponentActivity() {
 
-    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -38,17 +37,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             SocialMediaTheme {
                 CustomScaffold(
-//                    topBar = {
-//                        TopAppBar(
-//                            title = {
-//                                Text(
-//                                    modifier = Modifier,
-//                                    text = "Title"
-//                                )
-//                            },
-//                        )
-//                    },
-
                     contentWindowInsets = WindowInsets(0.dp)
                 ) { paddings, hasTopAppBar ->
 
