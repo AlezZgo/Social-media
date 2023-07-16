@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Аватар</string>
+
+    <string name="main">Главная</string>
+    <string name="workshop">Мастерская</string>
+    <string name="settings">Настройки</string>
+    <string name="maps">Карта</string>
+</resources>

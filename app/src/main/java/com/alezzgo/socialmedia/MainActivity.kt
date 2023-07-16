@@ -1,31 +1,27 @@
 package com.alezzgo.socialmedia
 
+import CustomScaffold
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
-import androidx.compose.foundation.layout.displayCutout
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBars
-import androidx.compose.foundation.layout.union
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.NonRestartableComposable
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
-import com.alezzgo.socialmedia.ui.CustomScaffold
-import com.alezzgo.socialmedia.ui.Extensions.plus
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.alezzgo.socialmedia.ui.screens.HomeScreen
+import com.alezzgo.socialmedia.ui.screens.*
+import com.alezzgo.socialmedia.ui.screens.destinations.*
 import com.alezzgo.socialmedia.ui.theme.SocialMediaTheme
+import com.ramcosta.composedestinations.DestinationsNavHost
+import com.ramcosta.composedestinations.rememberNavHostEngine
 
 
 class MainActivity : ComponentActivity() {
@@ -36,75 +32,31 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             SocialMediaTheme {
+
+                val navController = rememberNavController()
+                val navHostEngine = rememberNavHostEngine()
+                val newBackStackEntry by navController.currentBackStackEntryAsState()
+                val route = newBackStackEntry?.destination?.route
+
                 CustomScaffold(
-                    contentWindowInsets = WindowInsets(0.dp)
-                ) { paddings, hasTopAppBar ->
-
-
-                    LazyColumn(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(paddings),
-
-                        contentPadding = if (hasTopAppBar) {
-                            WindowInsets.navigationBars
-                        } else {
-                            WindowInsets.displayCutout
-                                .union(WindowInsets.statusBars)
-                                .union(WindowInsets.navigationBars)
-
-                        }.asPaddingValues() + PaddingValues(8.dp)
-
-                    ) {
-                        item {
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                            Greeting("Hello")
-                        }
+                    navController = navController,
+                    showBottomBar = route in listOf(
+                        HomeScreenDestination.route,
+                        WorkshopScreenDestination.route,
+                        SettingsScreenDestination.route,
+//                        MapsScreenDestination.route
+                    )
+                ) {
+                    Box(modifier = Modifier.padding(0.dp)) {
+                        DestinationsNavHost(
+                            navGraph = NavGraphs.root,
+                            navController = navController,
+                            engine = navHostEngine
+                        )
                     }
                 }
+
             }
         }
-    }
-}
-
-@NonRestartableComposable
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) = OutlinedButton(onClick = { }) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SocialMediaTheme {
-        Greeting("Android")
     }
 }
