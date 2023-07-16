@@ -19,13 +19,17 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Composable
 fun SettingsScreen(
     navigator: DestinationsNavigator,
-) = Box(modifier = Modifier.fillMaxSize().padding(WindowInsets.displayCutout
-    .union(WindowInsets.statusBars)
-    .union(WindowInsets.navigationBars).asPaddingValues())){
+) = Box(
+    modifier = Modifier.fillMaxSize().padding(
+        WindowInsets.displayCutout
+            .union(WindowInsets.statusBars)
+            .union(WindowInsets.navigationBars).asPaddingValues()
+    )
+) {
 
-        Text(
-            modifier = Modifier,
-            text = "Settings"
-        )
+    Text(
+        modifier = Modifier,
+        text = "Settings"
+    )
 
 }

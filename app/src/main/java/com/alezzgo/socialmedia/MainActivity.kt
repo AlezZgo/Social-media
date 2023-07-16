@@ -1,22 +1,17 @@
 package com.alezzgo.socialmedia
 
-import CustomScaffold
+import MainScaffold
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.alezzgo.socialmedia.ui.screens.HomeScreen
 import com.alezzgo.socialmedia.ui.screens.*
 import com.alezzgo.socialmedia.ui.screens.destinations.*
 import com.alezzgo.socialmedia.ui.theme.SocialMediaTheme
@@ -32,13 +27,12 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             SocialMediaTheme {
-
                 val navController = rememberNavController()
                 val navHostEngine = rememberNavHostEngine()
                 val newBackStackEntry by navController.currentBackStackEntryAsState()
                 val route = newBackStackEntry?.destination?.route
 
-                CustomScaffold(
+                MainScaffold(
                     navController = navController,
                     showBottomBar = route in listOf(
                         HomeScreenDestination.route,

@@ -23,12 +23,18 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Composable
 fun WorkshopScreen(
     navigator: DestinationsNavigator,
-) = Scaffold (
+) = Scaffold(
     topBar = { TopAppBar(title = { Text("Workshop") }) }
 ) {
-    LazyColumn(modifier = Modifier.fillMaxSize(), contentPadding = it){
+    LazyColumn(modifier = Modifier.fillMaxSize(), contentPadding = it) {
 
-        item { repeat(100){ Button(modifier = Modifier.fillMaxWidth(), onClick = {  }) {Text("to to") } } }
+        item {
+            repeat(100) {
+                Button(
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = { }) { Text("to to") }
+            }
+        }
         item { Spacer(modifier = Modifier.size(90.dp)) } //todo fix
     }
 

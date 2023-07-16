@@ -18,7 +18,7 @@ import com.alezzgo.socialmedia.ui.screens.destinations.*
 
 @NonRestartableComposable
 @Composable
-fun SocialMediaBottomAppBar(
+fun MainBottomAppBar(
     navController: NavController,
     items: List<BottomNavItem> = listOf(
         BottomNavItem.Home,

@@ -3,10 +3,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 import com.alezzgo.socialmedia.ui.components.BottomNavItem
-import com.alezzgo.socialmedia.ui.components.SocialMediaBottomAppBar
+import com.alezzgo.socialmedia.ui.components.MainBottomAppBar
 
 @Composable
-fun CustomScaffold(
+fun MainScaffold(
     navController: NavController,
     showBottomBar: Boolean = true,
     items: List<BottomNavItem> = listOf(
@@ -20,7 +20,7 @@ fun CustomScaffold(
     Scaffold(
         bottomBar = {
             if (showBottomBar) {
-                SocialMediaBottomAppBar(navController,items)
+                MainBottomAppBar(navController, items)
             }
         }
     ) { paddingValues ->
