@@ -17,6 +17,8 @@ import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.alezzgo.socialmedia.ui.models.Chat
+import com.alezzgo.socialmedia.ui.models.ChatMember
 import com.alezzgo.socialmedia.ui.screens.destinations.*
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
@@ -34,7 +36,16 @@ fun HomeScreen(
         .union(WindowInsets.statusBars)
         .union(WindowInsets.navigationBars).asPaddingValues()
 ) {
-    item { Text(modifier = Modifier, text = "Home ${viewModel.info}") }
-    item { Button(onClick = { navigator.navigate(DescriptionScreenDestination()) }) { Text("to description") } }
+    item { Text(modifier = Modifier, text = "Home") }
+
+    val mockChat = Chat(
+        id = 203040,
+        members = listOf(
+            ChatMember(userId = 0,"Alex"),
+            ChatMember(userId = 1,"Stas"),
+        )
+    )
+
+    item { Button(onClick = { navigator.navigate(DescriptionScreenDestination(chat = mockChat)) }) { Text("to description") } }
     item { Spacer(modifier = Modifier.size(90.dp)) } //todo fix
 }

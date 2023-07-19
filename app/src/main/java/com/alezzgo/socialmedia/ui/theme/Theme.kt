@@ -2,11 +2,15 @@ package com.alezzgo.socialmedia.ui.theme
 
 import android.app.Activity
 import android.os.Build
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.FastOutLinearInEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -15,6 +19,8 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,6 +31,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
+import com.alezzgo.socialmedia.ui.localProviders.LocalTheme
+import com.alezzgo.socialmedia.ui.localProviders.Theme
+import com.alezzgo.socialmedia.ui.localProviders.rememberApplicationTheme
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 private val LightColors = lightColorScheme(
     primary = Light_primary,
@@ -93,45 +103,114 @@ private val DarkColors = darkColorScheme(
 
 @Composable
 fun SocialMediaTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+
+    val context = LocalContext.current
+    val localTheme = rememberApplicationTheme()
+
+    CompositionLocalProvider(
+        LocalTheme provides localTheme
+    ) {
+        val systemInDarkTheme = isSystemInDarkTheme()
+        val systemUiController = rememberSystemUiController()
+
+        val colorScheme = when (localTheme.appTheme) {
+            Theme.Dark -> dynamicDarkColorScheme(context)
+            Theme.Light -> dynamicLightColorScheme(context)
+            Theme.Auto -> if (systemInDarkTheme) DarkColors else LightColors
         }
 
-        darkTheme -> DarkColors
-        else -> LightColors
-    }
-    val view = LocalView.current
-
-    if (!view.isInEditMode) {
-        SideEffect {
-            val window = (view.context as Activity).window
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                window.isNavigationBarContrastEnforced = false
+        DisposableEffect(systemUiController, colorScheme) {
+            val darkSystemBars = when (localTheme.appTheme) {
+                Theme.Dark -> false
+                Theme.Light -> true
+                Theme.Auto -> !systemInDarkTheme
             }
-            window.statusBarColor = Color.Transparent.toArgb()
 
-            window.navigationBarColor = Color.Transparent.toArgb()
-            // invert status bar colors
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
-            WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars =
-                !darkTheme
-
+            systemUiController.setSystemBarsColor(
+                color = Color.Transparent,
+                darkIcons = darkSystemBars,
+            )
+            systemUiController.setNavigationBarColor(
+                color = Color.Transparent,
+                darkIcons = darkSystemBars,
+                navigationBarContrastEnforced = false
+            )
+            onDispose {}
         }
-    }
+//        val colorScheme = when {
+//            dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+//                val context = LocalContext.current
+//                if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+//            }
+//
+//            darkTheme -> DarkColors
+//            else -> LightColors
+//        }
+        val view = LocalView.current
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
-    )
+        if (!view.isInEditMode) {
+            SideEffect {
+                val window = (view.context as Activity).window
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    window.isNavigationBarContrastEnforced = false
+                }
+                window.statusBarColor = Color.Transparent.toArgb()
+
+                window.navigationBarColor = Color.Transparent.toArgb()
+
+            }
+        }
+
+        MaterialTheme(
+            colorScheme = colorScheme.switch(),
+            typography = Typography,
+            content = content
+        )
+    }
 }
+
+@Composable
+private fun animateColor(targetValue: Color) =
+    animateColorAsState(
+        targetValue = targetValue,
+        animationSpec = tween(durationMillis = 300, easing = FastOutLinearInEasing)
+    ).value
+
+@Composable
+fun ColorScheme.switch() = copy(
+    primary = animateColor(primary),
+    onPrimary = animateColor(onPrimary),
+    primaryContainer = animateColor(primaryContainer),
+    onPrimaryContainer = animateColor(onPrimaryContainer),
+    inversePrimary = animateColor(inversePrimary),
+    secondary = animateColor(secondary),
+    onSecondary = animateColor(onSecondary),
+    secondaryContainer = animateColor(secondaryContainer),
+    onSecondaryContainer = animateColor(onSecondaryContainer),
+    tertiary = animateColor(tertiary),
+    onTertiary = animateColor(onTertiary),
+    tertiaryContainer = animateColor(tertiaryContainer),
+    onTertiaryContainer = animateColor(onTertiaryContainer),
+    background = animateColor(background),
+    onBackground = animateColor(onBackground),
+    surface = animateColor(surface),
+    onSurface = animateColor(onSurface),
+    surfaceVariant = animateColor(surfaceVariant),
+    onSurfaceVariant = animateColor(onSurfaceVariant),
+    surfaceTint = animateColor(surfaceTint),
+    inverseSurface = animateColor(inverseSurface),
+    inverseOnSurface = animateColor(inverseOnSurface),
+    error = animateColor(error),
+    onError = animateColor(onError),
+    errorContainer = animateColor(errorContainer),
+    onErrorContainer = animateColor(onErrorContainer),
+    outline = animateColor(outline),
+    outlineVariant = animateColor(outlineVariant),
+    scrim = animateColor(scrim)
+)
 
 
 @Preview(showBackground = true)
@@ -141,7 +220,6 @@ private fun ColorsPreview() {
         modifier = Modifier.fillMaxWidth(),
     ) {
         SocialMediaTheme(
-            darkTheme = false
         ) {
             val colors = listOf(
                 "primary" to MaterialTheme.colorScheme.primary,
@@ -196,7 +274,6 @@ private fun ColorsPreview() {
             }
         }
         SocialMediaTheme(
-            darkTheme = true
         ) {
             val colors = listOf(
                 "primary" to MaterialTheme.colorScheme.primary,
