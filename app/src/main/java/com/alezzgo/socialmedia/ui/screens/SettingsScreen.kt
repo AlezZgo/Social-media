@@ -22,6 +22,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.alezzgo.socialmedia.ui.ext.horizontalCutoutPadding
 import com.alezzgo.socialmedia.ui.localProviders.LocalTheme
 import com.alezzgo.socialmedia.ui.localProviders.Theme
 import com.alezzgo.socialmedia.ui.localProviders.rememberApplicationTheme
@@ -34,9 +35,8 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 fun SettingsScreen(
     navigator: DestinationsNavigator,
 ) = Box(
-    modifier = Modifier.fillMaxSize().statusBarsPadding().navigationBarsPadding()
+    modifier = Modifier.fillMaxSize().statusBarsPadding().navigationBarsPadding().horizontalCutoutPadding()
 ) {
-
 
     val state = LocalTheme.current
 

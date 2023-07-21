@@ -115,10 +115,18 @@ fun SocialMediaTheme(
         val systemInDarkTheme = isSystemInDarkTheme()
         val systemUiController = rememberSystemUiController()
 
-        val colorScheme = when (localTheme.appTheme) {
-            Theme.Dark -> dynamicDarkColorScheme(context)
-            Theme.Light -> dynamicLightColorScheme(context)
-            Theme.Auto -> if (systemInDarkTheme) DarkColors else LightColors
+        val colorScheme = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S){
+            when (localTheme.appTheme) {
+                Theme.Dark -> dynamicDarkColorScheme(context)
+                Theme.Light -> dynamicLightColorScheme(context)
+                Theme.Auto -> if (systemInDarkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            }
+        }else {
+            when (localTheme.appTheme) {
+                Theme.Dark -> DarkColors
+                Theme.Light -> LightColors
+                Theme.Auto -> if (systemInDarkTheme) DarkColors else LightColors
+            }
         }
 
         DisposableEffect(systemUiController, colorScheme) {
