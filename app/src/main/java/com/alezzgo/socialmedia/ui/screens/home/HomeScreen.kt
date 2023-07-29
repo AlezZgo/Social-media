@@ -25,6 +25,7 @@ import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.alezzgo.maps.Mapus
 import com.alezzgo.socialmedia.ui.models.Chat
 import com.alezzgo.socialmedia.ui.models.ChatMember
 import com.alezzgo.socialmedia.ui.screens.destinations.*
@@ -56,4 +57,5 @@ fun HomeScreen(
 
     item { Button(onClick = { navigator.navigate(DescriptionScreenDestination(chat = mockChat)) }) { Text("to description") } }
     item { Spacer(modifier = Modifier.size(90.dp)) } //todo fix
+    item { Mapus() } //todo fix
 }
