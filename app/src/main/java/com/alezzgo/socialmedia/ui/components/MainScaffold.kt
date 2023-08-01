@@ -13,7 +13,7 @@ fun MainScaffold(
         BottomNavItem.Home,
         BottomNavItem.Workshop,
         BottomNavItem.Settings,
-        BottomNavItem.Maps,
+//        BottomNavItem.Maps,
     ),
     content: @Composable (paddingValues: PaddingValues) -> Unit
 ) {

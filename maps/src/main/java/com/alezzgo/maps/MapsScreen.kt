@@ -1,4 +1,4 @@
-package com.alezzgo.socialmedia.ui.screens
+package com.alezzgo.maps
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -7,13 +7,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.ramcosta.composedestinations.annotation.Destination
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
-@Destination
+@Destination(start = true)
 @Composable
-fun MapsScreen(
-    navigator: DestinationsNavigator,
-) {
+fun MapsScreen() {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center

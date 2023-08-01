@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1053389022386",
+    "project_id": "social-media-dd4f6",
+    "storage_bucket": "social-media-dd4f6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1053389022386:android:62727f19475ca5940395ab",
+        "android_client_info": {
+          "package_name": "com.alezzgo.socialmedia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1053389022386-ie7gme30nv5pgh51m5g76eo9hpga4tu2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCV_nv7Mc7uoee9wdEIxEphI1yp5w9lZA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1053389022386-ie7gme30nv5pgh51m5g76eo9hpga4tu2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

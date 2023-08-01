@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'com.google.devtools.ksp' version '1.8.22-1.0.11'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -101,5 +102,10 @@ dependencies {
     implementation("org.orbit-mvi:orbit-viewmodel:$orbitVersion")
     implementation("org.orbit-mvi:orbit-core:$orbitVersion")
     implementation "org.orbit-mvi:orbit-compose:$orbitVersion"
+
+    //FCM
+    implementation("com.google.firebase:firebase-inappmessaging-display:20.3.2")
+    implementation 'com.google.firebase:firebase-messaging:23.2.0'
+
 
 }

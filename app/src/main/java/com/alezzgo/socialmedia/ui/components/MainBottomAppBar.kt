@@ -15,6 +15,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.alezzgo.socialmedia.R
 import com.alezzgo.socialmedia.ui.screens.destinations.*
+import com.alezzgo.maps.destinations.*
+import com.alezzgo.socialmedia.ui.screens.destinations.Destination
 
 @NonRestartableComposable
 @Composable
@@ -24,7 +26,7 @@ fun MainBottomAppBar(
         BottomNavItem.Home,
         BottomNavItem.Workshop,
         BottomNavItem.Settings,
-        BottomNavItem.Maps,
+//        BottomNavItem.Maps,
     ),
 ) = BottomAppBar {
     items.forEach {
@@ -81,9 +83,9 @@ sealed class BottomNavItem(@StringRes val title: Int, val icon: Int, val destina
         destination = SettingsScreenDestination
     )
 
-    object Maps : BottomNavItem(
-        title = R.string.maps,
-        icon = R.drawable.ic_maps,
-        destination = MapsScreenDestination
-    )
+//    object Maps : BottomNavItem(
+//        title = R.string.maps,
+//        icon = R.drawable.ic_maps,
+//        destination = MapsScreenDestination
+//    )
 }

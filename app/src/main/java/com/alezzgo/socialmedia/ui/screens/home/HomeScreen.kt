@@ -1,13 +1,5 @@
 package com.alezzgo.socialmedia.ui.screens.home
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.expandVertically
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkVertically
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
@@ -25,7 +17,6 @@ import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.alezzgo.maps.Mapus
 import com.alezzgo.socialmedia.ui.models.Chat
 import com.alezzgo.socialmedia.ui.models.ChatMember
 import com.alezzgo.socialmedia.ui.screens.destinations.*
@@ -57,5 +48,5 @@ fun HomeScreen(
 
     item { Button(onClick = { navigator.navigate(DescriptionScreenDestination(chat = mockChat)) }) { Text("to description") } }
     item { Spacer(modifier = Modifier.size(90.dp)) } //todo fix
-    item { Mapus() } //todo fix
+//    item { Mapus() } //todo fix
 }
