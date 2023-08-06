@@ -9,7 +9,7 @@ class MyFirebaseMessagingService: FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
-        val test = "test"
+        val test = "test2"
         Log.d("MyNotification","remoteMessage: ${remoteMessage.notification?.title}")
     }
 
